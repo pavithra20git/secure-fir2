@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Blockchain-Based Secure FIR System</title>
+<link rel = "shortcut icon" href="securefir.jpeg" type="image/jpeg">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: Georgia, 'Times New Roman', Times, serif, sans-serif;
+    background-color : white;
+    background-size: cover;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+/* HIDDEN CLASS */
+.hidden{ 
+    display: none !important; 
+}
+
+/* NAVIGATION */
+nav{
+    background:#0f2027;
+    padding:15px;
+    text-align:center;
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+nav a{
+    color:white;
+    margin:0 20px;
+    cursor:pointer;
+    font-weight:bold;
+    text-decoration:none;
+    padding:8px 15px;
+    border-radius:5px;
+}
+nav a:hover{
+    background-color:rgba(255,255,255,0.1);
+    color:#ff6f61;
+}
+.home-logo{
+    width:150px;
+    height:150px;
+    object-fit:contain;
+    display:block;
+    margin:0 auto 20px;
+}
+
+/* CARD DESIGN */
+.container{ padding:25px; }
+.card{
+    background:white;
+    padding:25px;
+    margin:20px auto;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+    width:70%;
+    max-width:800px;
+}
+
+input, textarea{
+    padding:12px;
+    width:100%;
+    margin:10px 0;
+    border-radius:8px;
+    border:1px solid #ccc;
+    box-sizing:border-box;
+}
+
+button{
+    padding:12px 25px;
+    background:#ff6f61;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    margin:5px 5px 5px 0;
+    font-weight:bold;
+}
+button:hover{ background:#c0392b; }
+
+.success{ color:green; font-weight:bold; font-size:18px; }
+.back-btn{ background:#6c757d; }
+.back-btn:hover{ background:#5a6268; }
+
+/* LOGIN PAGE SPECIFIC */
+
+html, body{
+    margin:0;
+    padding:0;
+    width:100%;
+    height:100%;
+}
+
+#loginPage{
+    width:100%;
+    height:100vh;
+    min-height:100vh;
+    display:flex;
+    margin:0;
+    padding:0;
+}
+
+/* LEFT 40% */
+.login-left{
+    width:40%;
+    height:100vh;
+    margin:0;
+    padding:0;
+    overflow:hidden;
+}
+
+.login-left img{
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+
+/* RIGHT 60% */
+.login-right{
+    width:60%;
+    height:100vh;
+    margin:0;
+    padding:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#f7f8fa;
+}
+/* LOGIN FORM */
+.login-box{
+    width:420px;
+    max-width:85%;
+}
+
+.login-box h1{
+    font-size:36px;
+    color:#17242b;
+    margin-bottom:8px;
+}
+
+.login-subtitle{
+    color:#777;
+    font-size:14px;
+    margin-bottom:35px;
+}
+
+
+/* INPUT GROUP */
+.input-group{
+    margin-bottom:20px;
+}
+
+.input-group label{
+    display:block;
+    text-align:left;
+    font-weight:bold;
+    font-size:14px;
+    color:#333;
+    margin-bottom:7px;
+}
+
+.input-group input{
+    width:100%;
+    padding:14px 15px;
+    margin:0;
+
+    border:1px solid #d5d9dc;
+    border-radius:6px;
+
+    background:white;
+    font-size:15px;
+
+    outline:none;
+    transition:0.2s;
+}
+
+.input-group input:focus{
+    border-color:#1b4d5c;
+    box-shadow:0 0 0 3px rgba(27,77,92,0.1);
+}
+
+
+/* LOGIN BUTTON */
+.login-button{
+    width:100%;
+    padding:14px;
+
+    margin-top:10px;
+
+    background:#173b4d;
+    color:white;
+
+    border:none;
+    border-radius:6px;
+
+    font-size:15px;
+    font-weight:bold;
+    letter-spacing:1px;
+
+    cursor:pointer;
+
+    transition:0.2s;
+}
+
+.login-button:hover{
+    background:#0f2835;
+}
+
+
+/* FOOTER */
+.login-footer{
+    text-align:center;
+    margin-top:25px;
+    color:#999;
+    font-size:12px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN PAGE -->
+<div id="loginPage">
+
+    <!-- LEFT SIDE - POLICE EMBLEM -->
+    <div class="login-left">
+
+        <img src="logo.jpg" alt="Indian Police Emblem">
+
+
+    </div>
+
+    <!-- RIGHT SIDE - LOGIN -->
+    <div class="login-right">
+
+        <div class="login-box">
+
+            <h1>Secure FIR</h1>
+
+            <p class="login-subtitle">
+                Blockchain-Based Secure FIR Filing System
+            </p>
+
+            <div class="input-group">
+                <label>Username</label>
+                <input type="text" id="username" placeholder="Enter your username">
+            </div>
+
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" id="password" placeholder="Enter your password">
+            </div>
+
+            <button class="login-button" onclick="login()">
+                LOGIN
+            </button>
+
+            <p class="login-footer">
+                Secure • Transparent • Tamper-Proof
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- MAIN PAGE -->
+<div id="mainPage" class="hidden">
+
+<nav id="navbar">
+
+    <a onclick="showPage('home')">Home</a>
+    <a onclick="showPage('create')">Create FIR</a>
+    <a onclick="showPage('view')">View FIRs</a>
+    <a onclick="showPage('status')">Check Status</a>
+    <a onclick="showPage('logout')">LogOut</a>
+</nav>
+
+<div class="container">
+
+
+<!-- HOME -->
+<div id="home" class="card">
+
+    <img src="securefir.jpeg" class="home-logo">
+
+    <h1>Secure FIR</h1>
+
+    <h2>Blockchain-Based Secure FIR Filing System</h2>
+
+    <p class="home-description">
+        A secure, transparent and tamper-resistant digital platform
+        for filing and managing First Information Reports.
+    </p>
+
+    <div class="features">
+        
+        <div class = "feature">
+            <h2>Why Secure FIR</h2>
+        </div>
+
+        <div class="feature">
+            <h4>🔐 Secure</h4>
+            <p>
+                FIR data is protected using encryption and secure
+                storage mechanisms.
+            </p>
+        </div>
+
+        <div class="feature">
+            <h4>⛓️ Tamper-Proof</h4>
+            <p>
+                Blockchain technology helps maintain the integrity
+                and traceability of FIR records.
+            </p>
+        </div>
+
+        <div class="feature">
+            <h4>📍 GPS Verified</h4>
+            <p>
+                Automatically captures the complaint location
+                for reliable incident verification.
+            </p>
+        </div>
+
+        <div class="feature">
+            <h4>🤖 NLP Enabled</h4>
+            <p>
+                Analyzes the complaint description and suggests
+                relevant legal sections.
+            </p>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- CREATE FIR -->
+<div id="create" class="card hidden">
+    <button class="back-btn" onclick="showPage('home')">⬅ Back</button>
+    <h2>File FIR</h2>
+    <input type="text" id="name" placeholder="Complainant Name">
+    <input type="text" id="mobile" placeholder="Mobile Number">
+    <label for="authenticate">Authenticate using:</label>
+    <select id = "Authenticate using:">
+        <option value = "---Select---">---Select---</option>
+        <option value="Adhaar Card">Adhaar Card</option>
+        <option value="PAN Card">PAN Card</option>
+        <option value = "Voter ID">Voter ID</option>
+        <option value = "Driving license">Driving License</option>
+    </select>
+    <textarea id="desc" rows="4" placeholder="Complaint Description"></textarea>
+    <input type="text" id="location" placeholder="Location (Auto GPS)" readonly>
+    <button onclick="getLocation()">Capture GPS</button>
+    <button onclick="submitFIR()">Submit FIR</button>
+</div>
+
+<!-- SUCCESS PAGE -->
+<div id="successPage" class="card hidden">
+    <h2 class="success">✅ FIR Filed Successfully</h2>
+    <p id="successDetails"></p>
+    <button onclick="showPage('create')">File New FIR</button>
+</div>
+
+<!-- VIEW ALL FIR -->
+<div id="view" class="card hidden">
+    <button class="back-btn" onclick="showPage('home')">⬅ Back</button>
+    <h2>All FIR Records</h2>
+    <div id="allFIRs"></div>
+</div>
+
+<!-- CHECK STATUS -->
+<div id="status" class="card hidden">
+    <button class="back-btn" onclick="showPage('home')">⬅ Back</button>
+    <h2>Check FIR Status</h2>
+    <input type="text" id="searchFIR" placeholder="Enter FIR Number">
+    <button onclick="checkStatus()">Search</button>
+    <div id="statusResult"></div>
+</div>
+
+<!-- LOGOUT -->
+<div id="logout" class="card hidden">
+    <h2>Are you sure you want to logout?</h2>
+    <button onclick="logoutConfirm()">LogOut</button>
+    <button class="back-btn" onclick="showPage('home')">Cancel</button>
+</div>
+
+</div>
+</div>
+
+<script>
+
+let firDatabase = {};
+
+/* INITIALIZE PAGE */
+window.onload = function() {
+    document.getElementById("loginPage").classList.remove("hidden");
+    document.getElementById("mainPage").classList.add("hidden");
+};
+
+/* LOGIN */
+function login(){
+    let user = document.getElementById("username").value;
+    let pass = document.getElementById("password").value;
+
+    if(user && pass){
+        document.getElementById("loginPage").classList.add("hidden");
+        document.getElementById("mainPage").classList.remove("hidden");
+        showPage('home');
+    }else{
+        alert("Enter Username & Password");
+    }
+}
+
+/* LOGOUT CONFIRM */
+function logoutConfirm(){
+    document.getElementById("mainPage").classList.add("hidden");
+    document.getElementById("loginPage").classList.remove("hidden");
+    document.getElementById("username").value = "";
+    document.getElementById("password").value = "";
+}
+
+/* PAGE NAVIGATION */
+function showPage(id){
+    let pages = ["home","create","view","status","logout","successPage"];
+    pages.forEach(function(p){
+        document.getElementById(p).classList.add("hidden");
+    });
+    document.getElementById(id).classList.remove("hidden");
+
+    if(id === "view") displayAllFIRs();
+}
+
+/* FIR NUMBER GENERATOR */
+function generateFIR(){
+    return "FIR" + Math.floor(100000 + Math.random() * 900000);
+}
+
+/* GPS */
+function getLocation(){
+    if(navigator.geolocation){
+        navigator.geolocation.getCurrentPosition(function(position){
+            let lat = position.coords.latitude;
+            let lon = position.coords.longitude;
+            fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`)
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById("location").value = data.display_name;
+            })
+            .catch(() => {
+                document.getElementById("location").value = lat + ", " + lon;
+            });
+        });
+    }else{
+        alert("GPS not supported");
+    }
+}
+
+/* SUBMIT FIR */
+function submitFIR(){
+    let name = document.getElementById("name").value;
+    let mobile = document.getElementById("mobile").value;
+    let desc = document.getElementById("desc").value;
+    let location = document.getElementById("location").value;
+
+    if(!name || !mobile || !desc){
+        alert("Please fill all fields");
+        return;
+    }
+
+    let firNo = generateFIR();
+    let timestamp = new Date().toLocaleString();
+
+    // --- NEW LOGIC STARTS HERE ---
+    let ipc = getIPCSection(desc); 
+    // --- NEW LOGIC ENDS HERE ---
+
+    firDatabase[firNo]={
+        name, mobile, description:desc,
+        location,
+        status:"Under Investigation",
+        timestamp,
+        ipcSection:ipc
+    };
+
+    document.getElementById("successDetails").innerHTML =
+        "<b>FIR Number:</b> "+firNo+
+        "<br><b>Status:</b> Under Investigation"+
+        "<br><b>Timestamp:</b> "+timestamp+
+        "<br><b>IPC/Legal Section:</b> <span style='color:#d35400'>"+ipc+"</span>";
+
+    /* CLEAR FORM */
+    document.getElementById("name").value="";
+    document.getElementById("mobile").value="";
+    document.getElementById("desc").value="";
+    document.getElementById("location").value="";
+
+    /* SHOW SUCCESS PAGE */
+    showPage("successPage");
+}
+/* ADVANCED IPC & LEGAL SECTION DETECTOR */
+function getIPCSection(description) {
+    let text = description.toLowerCase();
+
+    // --- CRIMINAL OFFENSES (IPC) ---
+    if(text.includes("murder") || text.includes("killed") || text.includes("homicide")) return "IPC 302 - Murder";
+    if(text.includes("attempt to murder") || text.includes("tried to kill") || text.includes("poisoned")) return "IPC 307 - Attempt to Murder";
+    if(text.includes("rape") || text.includes("sexual assault") || text.includes("molestation")) return "IPC 376 - Rape";
+    if(text.includes("theft") || text.includes("stolen") || text.includes("pickpocket")) return "IPC 378 - Theft";
+    if(text.includes("robbery") || text.includes("snatching") || text.includes("loot")) return "IPC 392 - Robbery";
+    if(text.includes("dacoity") || text.includes("gang robbery")) return "IPC 395 - Dacoity";
+    if(text.includes("cheating") || text.includes("fraud") || text.includes("scam") || text.includes("deceive")) return "IPC 420 - Cheating";
+    if(text.includes("forgery") || text.includes("fake document") || text.includes("counterfeit")) return "IPC 463/465 - Forgery";
+    if(text.includes("defamation") || text.includes("slander") || text.includes("libel") || text.includes("ruin reputation")) return "IPC 499/500 - Defamation";
+    if(text.includes("assault") || text.includes("attack") || text.includes("beat") || text.includes("hit")) return "IPC 351/323 - Assault";
+    if(text.includes("hurt") || text.includes("injury") || text.includes("wound")) return "IPC 323/324 - Voluntarily Causing Hurt";
+    if(text.includes("grievous hurt") || text.includes("acid attack") || text.includes("disfigure")) return "IPC 320/326 - Grievous Hurt";
+    if(text.includes("kidnap") || text.includes("abduct") || text.includes("child lift")) return "IPC 363 - Kidnapping";
+    if(text.includes("extortion") || text.includes("blackmail") || text.includes("threaten for money")) return "IPC 383 - Extortion";
+    if(text.includes("criminal intimidation") || text.includes("threat to life")) return "IPC 506 - Criminal Intimidation";
+    if(text.includes("dowry") || text.includes("harassment for dowry")) return "IPC 498A - Cruelty by Husband/Relatives";
+    if(text.includes("domestic violence") || text.includes("wife beating")) return "IPC 498A / DV Act 2005";
+    if(text.includes("suicide abetment") || text.includes("forced suicide")) return "IPC 306 - Abetment of Suicide";
+    if(text.includes("public nuisance") || text.includes("blocking road") || text.includes("loud noise")) return "IPC 268/290 - Public Nuisance";
+    if(text.includes("obscene") || text.includes("indecent") || text.includes("public nudity")) return "IPC 294 - Obscene Acts";
+    if(text.includes("riot") || text.includes("unlawful assembly") || text.includes("mob violence")) return "IPC 147/148 - Rioting";
+    if(text.includes("trespass") || text.includes("illegal entry") || text.includes("house breaking")) return "IPC 441/447 - Trespass";
+    if(text.includes("arson") || text.includes("set fire") || text.includes("burning property")) return "IPC 435/436 - Mischief by Fire";
+    if(text.includes("counterfeit currency") || text.includes("fake notes")) return "IPC 489A - Counterfeiting Currency";
+    if(text.includes("bigamy") || text.includes("second marriage")) return "IPC 494 - Bigamy";
+    if(text.includes("adultery")) return "Note: Adultery is decriminalized but grounds for divorce.";
+    
+    // --- CYBER CRIMES (IT Act & IPC) ---
+    if(text.includes("hacking") || text.includes("unauthorized access")) return "IT Act Sec 66 - Hacking";
+    if(text.includes("identity theft") || text.includes("aadhaar steal") || text.includes("impersonation")) return "IT Act Sec 66C - Identity Theft";
+    if(text.includes("phishing") || text.includes("otp fraud") || text.includes("bank detail steal")) return "IT Act Sec 66D - Cheating by Personation";
+    if(text.includes("cyber stalking") || text.includes("online harassment") || text.includes("tracking online")) return "IPC 354D - Cyber Stalking";
+    if(text.includes("morphed photo") || text.includes("private photo leak") || text.includes("revenge porn")) return "IT Act Sec 66E/67 - Privacy Violation/Obscenity";
+    if(text.includes("fake news") || text.includes("rumor") || text.includes("whatsapp forward panic")) return "IPC 505 - Statements conducing to Public Mischief";
+    if(text.includes("defame online") || text.includes("social media abuse")) return "IPC 499/500 - Defamation";
+    if(text.includes("ransomware") || text.includes("virus attack") || text.includes("data lock")) return "IT Act Sec 66F - Cyber Terrorism";
+    if(text.includes("deepfake") || text.includes("ai fake video")) return "IT Rules 2021 / IPC 465 - Forgery";
+    if(text.includes("online gambling") || text.includes("betting app") || text.includes("casino app")) return "Public Gambling Act 1867 / State Laws";
+    if(text.includes("loan app harassment") || text.includes("digital lending fraud")) return "RBI Guidelines / IPC 506 - Criminal Intimidation";
+
+    // --- TRAFFIC & MOTOR VEHICLES ---
+    if(text.includes("drunk driving") || text.includes("driving under influence") || text.includes("alcohol driving")) return "MV Act Sec 185 - Drunk Driving";
+    if(text.includes("overspeed") || text.includes("rash driving") || text.includes("dangerous driving")) return "MV Act Sec 184 - Dangerous Driving";
+    if(text.includes("hit and run")) return "IPC 304A / MV Act Sec 134 - Hit and Run";
+    if(text.includes("no helmet") || text.includes("helmet rule")) return "MV Act Sec 194D - No Helmet";
+    if(text.includes("no license") || text.includes("invalid license")) return "MV Act Sec 181 - Driving Without License";
+    if(text.includes("jump signal") || text.includes("red light")) return "MV Act Sec 177 - Traffic Signal Violation";
+    if(text.includes("no insurance") || text.includes("expired insurance")) return "MV Act Sec 196 - No Insurance";
+    if(text.includes("phone while driving") || text.includes("mobile use driving")) return "MV Act Sec 184A - Mobile Use While Driving";
+    if(text.includes("overloading") || text.includes("extra passengers")) return "MV Act Sec 194C - Overloading";
+
+    // --- RAILWAYS ---
+    if(text.includes("ticketless travel") || text.includes("without ticket")) return "Railways Act Sec 138 - Travel Without Ticket";
+    if(text.includes("pull chain") || text.includes("emergency chain misuse")) return "Railways Act Sec 141 - Misuse of Chain";
+    if(text.includes("train delay compensation")) return "Railway Claims Tribunal Act - Compensation Rules";
+    if(text.includes("smoking in train")) return "Railways Act Sec 167 - Smoking Prohibition";
+    if(text.includes("damage railway property")) return "Railways Act Sec 151 - Damage to Property";
+
+    // --- AVIATION ---
+    if(text.includes("flight delay") || text.includes("cancelled flight")) return "DGCA Civil Aviation Requirements - Compensation";
+    if(text.includes("lost baggage") || text.includes("damaged luggage")) return "DGCA Rules - Baggage Compensation";
+    if(text.includes("unruly passenger") || text.includes("misbehavior on flight")) return "DGCA No-Fly List / Aircraft Act";
+    if(text.includes("drone") || text.includes("flying drone illegally")) return "Drone Rules 2021 - DGCA";
+    if(text.includes("smoking on flight")) return "Aircraft Act 1934 - Smoking Ban";
+
+    // --- ENVIRONMENT ---
+    if(text.includes("plastic ban") || text.includes("single use plastic")) return "Plastic Waste Management Rules 2022";
+    if(text.includes("tree cutting") || text.includes("cut trees")) return "Forest Conservation Act 1980";
+    if(text.includes("water pollution") || text.includes("dump waste in river")) return "Water Act 1974";
+    if(text.includes("air pollution") || text.includes("smoke") || text.includes("factory smoke")) return "Air Act 1981";
+    if(text.includes("noise pollution") || text.includes("loudspeaker") || text.includes("dj after 10pm")) return "Noise Pollution Rules 2000";
+    if(text.includes("wildlife") || text.includes("poaching") || text.includes("killing animal")) return "Wildlife Protection Act 1972";
+
+    // --- CONSUMER & BANKING ---
+    if(text.includes("expired product") || text.includes("defective product") || text.includes("bad service")) return "Consumer Protection Act 2019";
+    if(text.includes("cheque bounce") || text.includes("dishonored cheque")) return "NI Act Sec 138 - Cheque Bounce";
+    if(text.includes("bank fraud") || text.includes("atm fraud") || text.includes("upi scam")) return "IPC 420 / IT Act Sec 66D";
+    if(text.includes("harassment by bank") || text.includes("loan recovery harassment")) return "RBI Ombudsman Scheme";
+    if(text.includes("insurance claim reject") || text.includes("fake insurance")) return "Insurance Act 1938";
+
+    // --- LABOR & WORKPLACE ---
+    if(text.includes("salary not paid") || text.includes("wage delay" || text.includes("salary not received"))) return "Payment of Wages Act 1936";
+    if(text.includes("workplace harassment") || text.includes("sexual harassment office")) return "POSH Act 2013";
+    if(text.includes("no maternity leave")) return "Maternity Benefit Act 1961";
+    if(text.includes("child labor") || text.includes("kids working")) return "Child Labour Act 1986";
+
+    // --- SELF DEFENSE & GENERAL ---
+    if(text.includes("self defense") || text.includes("fought back")) return "IPC Sec 96-106 - Right to Private Defense";
+    if(text.includes("wrongful arrest") || text.includes("police brutality")) return "CrPC Sec 358 / DK Basu Guidelines";
+    if(text.includes("bail")) return "CrPC Sec 437/438 - Bail Provisions";
+
+    // DEFAULT
+    return "IPC Suggestion Pending (Manual Review Required)";
+}
+
+/* CHECK STATUS */
+function checkStatus(){
+    let firNo = document.getElementById("searchFIR").value;
+    if(firDatabase[firNo]){
+        let d = firDatabase[firNo];
+        document.getElementById("statusResult").innerHTML =
+        "<br><b>Name:</b> " + d.name +
+        "<br><b>Status:</b> " + d.status +
+        "<br><b>IPC:</b> " + d.ipcSection;
+    }else{
+        document.getElementById("statusResult").innerHTML = "❌ No FIR Found";
+    }
+}
+
+/* VIEW ALL FIR */
+function displayAllFIRs(){
+    let output = "";
+    for(let fir in firDatabase){
+        let d = firDatabase[fir];
+        output += "<div style='border-bottom:1px solid #eee; padding:10px; margin-bottom:10px;'>" +
+        "<b>" + fir + "</b><br>" +
+        "Name: " + d.name + "<br>" +
+        "Location: " + d.location + "<br>" +
+        "Status: " + d.status + "<br>" +
+        "IPC Section: "  + d.ipcSection +
+        "</div>";
+    }
+    document.getElementById("allFIRs").innerHTML = output || "No FIR Records Available";
+}
+
+</script>
+
+</body>
+</html>
